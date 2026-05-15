@@ -11,374 +11,347 @@ st.set_page_config(
     layout="wide"
 )
 
-# ── IMAGE URLS (hébergées sur expert-europe.eu) ──
+# ── IMAGE URLS ──
 URL_COUR  = "https://www.expert-europe.eu/medias/editor/oneshot-images/4346331516a0681396d543.jpg"
 URL_SUD1  = "https://www.expert-europe.eu/medias/editor/oneshot-images/4892571986a068182aaf97.jpg"
-URL_SUD2  = "https://www.expert-europe.eu/f8d5a1b5-34da-4ab6-bf12-398a4d5d7ec3"
+URL_SUD2  = "https://www.expert-europe.eu/medias/editor/oneshot-images/6632892076a0683fce6acf.jpg"
 URL_HERO  = "https://www.expert-europe.eu/medias/editor/oneshot-images/14335012956a06820ed498a.png"
 
-# ── CSS ──
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
 
-/* Force light mode partout */
-html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"],
-.stApp, .main, section, .block-container {
-    background-color: #FFFFFF !important;
-    color: #1A1A1A !important;
+/* ── FORCE LIGHT MODE ── */
+html, body, .stApp, [data-testid="stAppViewContainer"],
+[data-testid="stMain"], .main, .block-container,
+section[data-testid="stSidebar"] {
+    background-color: #FBF9F6 !important;
+    color: #3D2B1F !important;
 }
-* { color: #1A1A1A; }
 
-/* Streamlit chrome */
 #MainMenu, footer, header, .stDeployButton { visibility: hidden !important; }
 [data-testid="stToolbar"], [data-testid="stDecoration"] { display: none !important; }
 [data-testid="stHeader"] { background: transparent !important; }
 .block-container { padding-top: 0 !important; max-width: 100% !important; }
 
-/* Typographie */
-h1, h2, h3, .section-title {
-    font-family: 'Playfair Display', serif !important;
-    color: #1A1A1A !important;
-}
-p, span, label, div {
+/* ── GLOBAL TYPE ── */
+body, p, span, div, label, li {
     font-family: 'Lato', sans-serif !important;
-    color: #1A1A1A !important;
+    color: #3D2B1F !important;
+}
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif !important;
+    color: #2C1A0E !important;
 }
 
-/* ── HERO IMAGE ── */
+/* ── HERO ── */
 .hero-wrap {
-    position: relative;
     width: 100%;
-    height: 280px;
+    height: 260px;
     overflow: hidden;
-    background: #111;
+    background: #2C1A0E;
+    position: relative;
 }
 .hero-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 40%;
-    opacity: 0.72;
     display: block;
-}
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 1rem 2rem;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.55));
-}
-.hero-tag {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.75) !important;
-    border: 1px solid rgba(255,255,255,0.35);
-    padding: 0.28rem 1.1rem;
-    margin-bottom: 0.9rem;
-    display: inline-block;
-}
-.hero-title {
-    font-family: 'Playfair Display', serif !important;
-    font-weight: 400;
-    font-size: clamp(1.9rem, 4.5vw, 3.5rem);
-    color: #FFFFFF !important;
-    line-height: 1.1;
-    margin-bottom: 0.4rem;
-}
-.hero-sub {
-    font-family: 'Lato', sans-serif !important;
-    font-weight: 300;
-    font-size: 0.85rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.72) !important;
 }
 
 /* ── WELCOME ── */
 .welcome-box {
-    max-width: 780px;
-    margin: 3rem auto 2rem;
+    max-width: 760px;
+    margin: 3.5rem auto 0;
     padding: 0 2rem;
     text-align: center;
 }
 .welcome-box h2 {
     font-family: 'Playfair Display', serif !important;
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
     font-weight: 400;
-    color: #1A1A1A !important;
-    margin-bottom: 1.2rem;
+    color: #2C1A0E !important;
+    margin-bottom: 1rem;
 }
 .welcome-box p {
-    font-family: 'Lato', sans-serif !important;
     font-size: 0.95rem;
-    line-height: 1.85;
-    color: #3A3A3A !important;
-    margin-bottom: 0.85rem;
-    max-width: 68ch;
+    line-height: 1.9;
+    color: #5C3D2E !important;
+    margin-bottom: 0.9rem;
+    max-width: 66ch;
     margin-left: auto;
     margin-right: auto;
 }
-.accent-line {
-    width: 44px;
+.warm-line {
+    width: 48px;
     height: 2px;
-    background: #1A1A1A;
-    margin: 1.2rem auto 1.8rem;
+    background: linear-gradient(to right, #C4763A, #E8A87C);
+    margin: 1.1rem auto 1.9rem;
+    border-radius: 2px;
 }
 
 /* ── RULES BAND ── */
 .rules-band {
-    background: #F5F3EE;
-    padding: 1.2rem 2rem;
+    background: #F3EDE4;
+    padding: 1.3rem 2rem;
     display: flex;
     justify-content: center;
-    gap: 2.5rem;
+    gap: 2.2rem;
     flex-wrap: wrap;
-    border-top: 1px solid #E8E4DC;
-    border-bottom: 1px solid #E8E4DC;
-    margin-bottom: 3rem;
+    margin: 2.5rem 0;
+    border-radius: 0;
 }
 .rule-item {
-    font-family: 'Lato', sans-serif !important;
-    font-size: 0.78rem;
-    color: #3A3A3A !important;
-    letter-spacing: 0.04em;
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
+    font-size: 0.78rem !important;
+    color: #5C3D2E !important;
+    letter-spacing: 0.03em;
 }
 
-/* ── ROOM CARDS ── */
+/* ── ROOMS ── */
 .rooms-title {
     text-align: center;
-    margin-bottom: 2rem;
-    padding: 0 1rem;
+    padding: 0 1rem 1.8rem;
 }
 .rooms-title h2 {
     font-family: 'Playfair Display', serif !important;
-    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
     font-weight: 400;
-    color: #1A1A1A !important;
+    color: #2C1A0E !important;
     margin-bottom: 0.4rem;
 }
 .rooms-title p {
-    font-family: 'Lato', sans-serif !important;
     font-size: 0.83rem;
-    color: #777 !important;
+    color: #9B7B6A !important;
 }
 
+/* ── ROOM CARD ── */
 .room-card {
     background: #FFFFFF;
-    border: 1px solid #E8E4DC;
+    border-radius: 14px;
     overflow: hidden;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-    margin-bottom: 0.5rem;
+    border: 1.5px solid #EAE0D5;
+    transition: box-shadow 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+    cursor: pointer;
+    margin-bottom: 0.4rem;
 }
 .room-card:hover {
-    box-shadow: 0 12px 36px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
+    box-shadow: 0 18px 48px rgba(60,30,10,0.13);
+    transform: translateY(-4px);
+    border-color: #C4763A;
+}
+.room-card.selected {
+    border: 2px solid #C4763A;
+    box-shadow: 0 8px 28px rgba(196,118,58,0.18);
 }
 .room-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     display: block;
-    transition: transform 0.45s ease;
+    transition: transform 0.5s ease;
 }
-.room-card.selected {
-    border: 2px solid #1A1A1A;
-}
-.room-card:hover img { transform: scale(1.03); }
-.room-card-body { padding: 1.1rem 1.3rem 1.3rem; }
+.room-card:hover img { transform: scale(1.04); }
+.room-card-body { padding: 1.15rem 1.4rem 1.3rem; }
 .room-floor {
-    font-family: 'Lato', sans-serif !important;
-    font-size: 0.59rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
+    font-size: 0.58rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.24em !important;
     text-transform: uppercase;
-    color: #888 !important;
-    margin-bottom: 0.3rem;
+    color: #C4763A !important;
+    margin-bottom: 0.25rem;
 }
 .room-name {
     font-family: 'Playfair Display', serif !important;
-    font-size: 1.15rem;
-    color: #1A1A1A !important;
-    margin-bottom: 0.6rem;
+    font-size: 1.15rem !important;
+    color: #2C1A0E !important;
+    margin-bottom: 0.5rem;
 }
 .room-price {
     font-family: 'Playfair Display', serif !important;
-    font-size: 1.4rem;
-    color: #1A1A1A !important;
+    font-size: 1.4rem !important;
+    color: #2C1A0E !important;
 }
 .room-price span {
     font-family: 'Lato', sans-serif !important;
-    font-size: 0.7rem;
-    color: #888 !important;
+    font-size: 0.7rem !important;
+    color: #9B7B6A !important;
     font-weight: 300;
 }
 .room-detail {
-    font-family: 'Lato', sans-serif !important;
-    font-size: 0.73rem;
-    color: #888 !important;
+    font-size: 0.73rem !important;
+    color: #9B7B6A !important;
     margin-top: 0.25rem;
     line-height: 1.6;
 }
 
-/* ── FORM SECTION ── */
-.form-section {
-    max-width: 780px;
+/* ── FORM AREA ── */
+.form-area {
+    max-width: 800px;
     margin: 3rem auto 4rem;
     padding: 0 1.5rem;
 }
-.form-section h2 {
+.form-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1.5px solid #EAE0D5;
+    padding: 2.5rem 2.8rem;
+    box-shadow: 0 4px 24px rgba(60,30,10,0.06);
+}
+.form-area h2 {
     font-family: 'Playfair Display', serif !important;
     font-size: clamp(1.3rem, 2.5vw, 1.9rem);
     font-weight: 400;
-    color: #1A1A1A !important;
-    margin-bottom: 0.5rem;
+    color: #2C1A0E !important;
+    margin-bottom: 0.4rem;
 }
-.form-section p {
-    font-family: 'Lato', sans-serif !important;
+.form-area p {
     font-size: 0.85rem;
-    color: #666 !important;
+    color: #9B7B6A !important;
     margin-bottom: 1.5rem;
-    line-height: 1.7;
+    line-height: 1.75;
 }
 .form-step-label {
-    font-family: 'Lato', sans-serif !important;
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.28em;
+    font-size: 0.58rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.26em !important;
     text-transform: uppercase;
-    color: #888 !important;
-    padding-bottom: 0.45rem;
-    border-bottom: 1px solid #E8E4DC;
+    color: #C4763A !important;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #EAE0D5;
     margin-bottom: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1.4rem;
     display: block;
 }
 
-/* Streamlit inputs */
+/* ── STREAMLIT INPUTS ── */
 .stTextInput > label, .stSelectbox > label, .stTextArea > label {
     font-family: 'Lato', sans-serif !important;
-    font-size: 0.63rem !important;
+    font-size: 0.62rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.16em !important;
     text-transform: uppercase !important;
-    color: #555 !important;
+    color: #7A5C4A !important;
 }
 .stTextInput input, .stTextArea textarea {
     font-family: 'Lato', sans-serif !important;
     font-size: 0.9rem !important;
-    border: 1px solid #D0CCC4 !important;
-    border-radius: 0 !important;
-    background: #FAFAF8 !important;
-    color: #1A1A1A !important;
+    border: 1.5px solid #DDD4C8 !important;
+    border-radius: 8px !important;
+    background: #FBF9F6 !important;
+    color: #2C1A0E !important;
     box-shadow: none !important;
+    transition: border-color 0.2s ease !important;
 }
 .stTextInput input:focus, .stTextArea textarea:focus {
-    border-color: #1A1A1A !important;
-    box-shadow: none !important;
+    border-color: #C4763A !important;
+    box-shadow: 0 0 0 3px rgba(196,118,58,0.12) !important;
 }
 [data-baseweb="select"] > div {
-    border-radius: 0 !important;
-    border: 1px solid #D0CCC4 !important;
-    background: #FAFAF8 !important;
+    border-radius: 8px !important;
+    border: 1.5px solid #DDD4C8 !important;
+    background: #FBF9F6 !important;
+    transition: border-color 0.2s ease !important;
 }
 [data-baseweb="select"] > div:focus-within {
-    border-color: #1A1A1A !important;
+    border-color: #C4763A !important;
+    box-shadow: 0 0 0 3px rgba(196,118,58,0.12) !important;
 }
 
-/* Summary */
+/* ── SUMMARY BOX ── */
 .summary-box {
-    background: #F9F7F3;
-    border: 1px solid #E8E4DC;
-    border-left: 2px solid #1A1A1A;
-    padding: 0.9rem 1.1rem;
-    font-family: 'Lato', sans-serif !important;
-    font-size: 0.82rem;
-    color: #3A3A3A !important;
-    line-height: 1.75;
+    background: #FDF6EF;
+    border: 1.5px solid #EAD8C5;
+    border-radius: 10px;
+    border-left: 3px solid #C4763A;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.82rem !important;
+    color: #5C3D2E !important;
+    line-height: 1.8;
     margin-top: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
-.summary-box strong { color: #1A1A1A !important; font-weight: 700; }
+.summary-box strong { color: #2C1A0E !important; font-weight: 700; }
 
-/* Buttons */
+/* ── BUTTONS ── */
 .stFormSubmitButton > button {
     font-family: 'Lato', sans-serif !important;
     font-size: 0.68rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.22em !important;
     text-transform: uppercase !important;
-    background: #1A1A1A !important;
+    background: linear-gradient(135deg, #C4763A, #A85A22) !important;
     color: #FFFFFF !important;
     border: none !important;
-    border-radius: 0 !important;
+    border-radius: 8px !important;
     padding: 0.85rem 3rem !important;
     width: 100% !important;
-    margin-top: 1rem !important;
-    transition: background 0.2s !important;
+    margin-top: 1.2rem !important;
+    transition: opacity 0.2s, transform 0.15s !important;
+    box-shadow: 0 4px 18px rgba(196,118,58,0.3) !important;
 }
-.stFormSubmitButton > button:hover { background: #444 !important; }
+.stFormSubmitButton > button:hover {
+    opacity: 0.88 !important;
+    transform: translateY(-1px) !important;
+}
 
 .stButton > button {
     font-family: 'Lato', sans-serif !important;
-    font-size: 0.62rem !important;
+    font-size: 0.6rem !important;
     font-weight: 700 !important;
-    letter-spacing: 0.18em !important;
+    letter-spacing: 0.16em !important;
     text-transform: uppercase !important;
-    background: #1A1A1A !important;
+    background: #2C1A0E !important;
     color: #FFFFFF !important;
     border: none !important;
-    border-radius: 0 !important;
-    padding: 0.6rem 1.2rem !important;
+    border-radius: 8px !important;
+    padding: 0.55rem 1rem !important;
     width: 100% !important;
-    transition: background 0.2s !important;
+    transition: background 0.2s, transform 0.15s !important;
 }
-.stButton > button:hover { background: #444 !important; }
+.stButton > button:hover {
+    background: #C4763A !important;
+    transform: translateY(-1px) !important;
+}
 
 .stDownloadButton > button {
     font-family: 'Lato', sans-serif !important;
     font-size: 0.65rem !important;
     font-weight: 700 !important;
-    letter-spacing: 0.18em !important;
+    letter-spacing: 0.16em !important;
     text-transform: uppercase !important;
     background: transparent !important;
-    color: #1A1A1A !important;
-    border: 1px solid #1A1A1A !important;
-    border-radius: 0 !important;
+    color: #2C1A0E !important;
+    border: 1.5px solid #2C1A0E !important;
+    border-radius: 8px !important;
     padding: 0.7rem 1.8rem !important;
     transition: all 0.2s !important;
 }
 .stDownloadButton > button:hover {
-    background: #1A1A1A !important;
-    color: #fff !important;
+    background: #2C1A0E !important;
+    color: #FBF9F6 !important;
 }
 
-/* Footer */
+/* ── FOOTER ── */
 .site-footer {
-    background: #1A1A1A;
-    padding: 2rem 3rem;
+    background: #2C1A0E;
+    padding: 2.2rem 3rem;
     text-align: center;
-    font-family: 'Lato', sans-serif;
     font-size: 0.65rem;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.4) !important;
+    color: rgba(255,245,235,0.45) !important;
     line-height: 1.9;
 }
-.site-footer strong { color: rgba(255,255,255,0.65) !important; font-weight: 400; }
+.site-footer strong { color: rgba(255,245,235,0.7) !important; font-weight: 400; }
 
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #F5F3EE; }
-::-webkit-scrollbar-thumb { background: #1A1A1A; }
+::-webkit-scrollbar-track { background: #F3EDE4; }
+::-webkit-scrollbar-thumb { background: #C4763A; border-radius: 4px; }
+
+@media (max-width: 768px) {
+    .form-card { padding: 1.5rem 1.2rem; }
+    .rules-band { gap: 0.9rem; padding: 1rem; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -388,55 +361,50 @@ if "selected_room" not in st.session_state:
 
 # ── DATA ──
 CHAMBRES = {
-    "1E":    {"nom": "Chambre Cour",  "etage": "1st floor", "prix": 570, "charges": 30, "gar_red": 600,  "img": URL_COUR},
-    "GRISE": {"nom": "Chambre Sud 1", "etage": "2nd floor", "prix": 540, "charges": 30, "gar_red": 500,  "img": URL_SUD1},
-    "ROUGE": {"nom": "Chambre Sud 2", "etage": "3rd floor", "prix": 550, "charges": 30, "gar_red": 550,  "img": URL_SUD2},
+    "1E":    {"nom": "Chambre Cour",  "etage": "1st floor", "prix": 570, "charges": 30, "gar_red": 600, "img": URL_COUR, "rotate": False},
+    "GRISE": {"nom": "Chambre Sud 1", "etage": "2nd floor", "prix": 540, "charges": 30, "gar_red": 600, "img": URL_SUD1, "rotate": True},
+    "ROUGE": {"nom": "Chambre Sud 2", "etage": "3rd floor", "prix": 550, "charges": 30, "gar_red": 600, "img": URL_SUD2, "rotate": False},
 }
 
 def convert_to_pdf(docx_path):
     subprocess.run(['libreoffice', '--headless', '--convert-to', 'pdf', docx_path])
     return docx_path.replace(".docx", ".pdf")
 
-# ── HERO ──
+# ── HERO — image seule, sans texte ──
 st.markdown(f"""
 <div class="hero-wrap">
-    <img src="{URL_HERO}" alt="Rue de l'Orient 46">
-    <div class="hero-overlay">
-        <span class="hero-tag">Room rental · Etterbeek, Brussels</span>
-        <h1 class="hero-title">46, Rue de l'Orient</h1>
-        <p class="hero-sub">Close to the European Institutions · Owner-managed</p>
-    </div>
+    <img src="{URL_HERO}" alt="46 Rue de l'Orient, Etterbeek">
 </div>
 """, unsafe_allow_html=True)
 
-# ── WELCOME TEXT ──
+# ── WELCOME ──
 st.markdown("""
 <div class="welcome-box">
     <h2>Welcome to Rue de l'Orient!</h2>
-    <div class="accent-line"></div>
+    <div class="warm-line"></div>
     <p>We are happy to welcome you to this friendly and vibrant neighbourhood, ideally located
     close to the European institutions. Nearby, you can enjoy a drink at <strong>Place Jourdan</strong>,
     do your groceries at Lidl or Colruyt, or go for a run in one of the beautiful parks around
-    the house: <strong>Parc Louis Hap</strong>, Parc Léopold, or Parc du Cinquantenaire.</p>
+    the house: <strong>Parc Louis Hap</strong>, Parc Leopold, or Parc du Cinquantenaire.</p>
     <p>The house is owner-managed and offers three bedrooms. We aim to create a calm, respectful,
-    and family-like environment. This is not a party house. We value peace and quiet, and we
+    and family-like environment. This is not a party house — we value peace and quiet, and we
     expect everyone to respect this atmosphere.</p>
-    <p>We are a non-smoking home, and we all make an effort to keep the common areas clean and
-    pleasant for everyone. We also believe in mutual respect and helping each other when needed.</p>
-    <p>We hope you will feel comfortable and at home here very quickly. <strong>Welcome!</strong> 🙂</p>
+    <p>We are a non-smoking home. We all make an effort to keep the common areas clean and
+    pleasant, and we believe in mutual respect and helping each other when needed.</p>
+    <p>We hope you will feel comfortable and at home here very quickly. <strong>Welcome!</strong></p>
 </div>
 """, unsafe_allow_html=True)
 
 # ── RULES BAND ──
 st.markdown("""
 <div class="rules-band">
-    <span class="rule-item">🚭 Non-smoking</span>
-    <span class="rule-item">🤝 Mutual respect</span>
-    <span class="rule-item">🌿 Clean common areas</span>
-    <span class="rule-item">🔇 Peace &amp; quiet</span>
-    <span class="rule-item">🏛️ 5 min · EU institutions</span>
-    <span class="rule-item">🛒 Lidl &amp; Colruyt nearby</span>
-    <span class="rule-item">🌳 Parc Louis Hap · Parc du Cinquantenaire</span>
+    <span class="rule-item">Non-smoking home</span>
+    <span class="rule-item">Mutual respect</span>
+    <span class="rule-item">Clean common areas</span>
+    <span class="rule-item">Peace &amp; quiet</span>
+    <span class="rule-item">5 min · EU institutions</span>
+    <span class="rule-item">Lidl &amp; Colruyt nearby</span>
+    <span class="rule-item">Parc Louis Hap · Parc du Cinquantenaire</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -453,22 +421,19 @@ for col, (key, ch) in zip([col1, col2, col3], CHAMBRES.items()):
     with col:
         is_sel = st.session_state.selected_room == key
         sel_class = "room-card selected" if is_sel else "room-card"
-        btn_label = "✓ Selected" if is_sel else "Select →"
-
-        # Note: chambre sud 1 photo is rotated — CSS fix
-        img_style = "transform: rotate(0deg);" if key != "GRISE" else "transform: rotate(90deg); object-position: center;"
+        btn_label = "Selected" if is_sel else "Select this room"
+        img_style = "transform: rotate(90deg); object-fit: cover; width: 100%; height: 200px;" if ch["rotate"] else "width: 100%; height: 200px; object-fit: cover;"
 
         st.markdown(f"""
         <div class="{sel_class}">
-            <div style="height:200px; overflow:hidden;">
-                <img src="{ch['img']}" alt="{ch['nom']}"
-                     style="width:100%; height:200px; object-fit:cover; display:block; {img_style}">
+            <div style="height:200px; overflow:hidden; background:#F3EDE4;">
+                <img src="{ch['img']}" alt="{ch['nom']}" style="{img_style} display:block;">
             </div>
             <div class="room-card-body">
                 <p class="room-floor">{ch['etage']}</p>
                 <h3 class="room-name">{ch['nom']}</h3>
-                <div class="room-price">{ch['prix']} € <span>/ month</span></div>
-                <p class="room-detail">Utilities: {ch['charges']} € &nbsp;·&nbsp; Deposit: {ch['gar_red']} €</p>
+                <div class="room-price">{ch['prix']} &euro; <span>/ month</span></div>
+                <p class="room-detail">Utilities: {ch['charges']} &euro; &nbsp;&middot;&nbsp; Deposit: {ch['gar_red']} &euro;</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -479,17 +444,19 @@ for col, (key, ch) in zip([col1, col2, col3], CHAMBRES.items()):
 
 # ── FORM ──
 st.markdown("""
-<div class="form-section">
+<div class="form-area">
     <h2>Generate your rental contract</h2>
-    <div class="accent-line" style="margin-left:0;"></div>
+    <div class="warm-line" style="margin-left:0;"></div>
     <p>Fill in the form below to receive your personalised rental contract as a PDF,
     ready to sign. All fields marked with * are required.</p>
+    <div class="form-card">
+</div>
 </div>
 """, unsafe_allow_html=True)
 
 with st.form("contract_form"):
+    st.markdown('<span class="form-step-label">Personal information</span>', unsafe_allow_html=True)
 
-    st.markdown('<span class="form-step-label">① Personal information</span>', unsafe_allow_html=True)
     col_t, col_f, col_l = st.columns([1, 2, 2])
     with col_t:
         gender = st.selectbox("Title", ["Mr.", "Ms.", "Dr."])
@@ -506,7 +473,7 @@ with st.form("contract_form"):
     with col_e:
         email = st.text_input("Email address *")
 
-    st.markdown('<span class="form-step-label">② Room & rental details</span>', unsafe_allow_html=True)
+    st.markdown('<span class="form-step-label">Room & rental details</span>', unsafe_allow_html=True)
 
     ch_keys = list(CHAMBRES.keys())
     current_idx = ch_keys.index(st.session_state.selected_room)
@@ -514,28 +481,28 @@ with st.form("contract_form"):
         "Room",
         ch_keys,
         index=current_idx,
-        format_func=lambda k: f"{CHAMBRES[k]['nom']} — {CHAMBRES[k]['prix']} €/month ({CHAMBRES[k]['etage']})"
+        format_func=lambda k: f"{CHAMBRES[k]['nom']}  —  {CHAMBRES[k]['prix']} €/month  ({CHAMBRES[k]['etage']})"
     )
-
     ch = CHAMBRES[room]
     st.markdown(f"""
     <div class="summary-box">
-        <strong>{ch['nom']}</strong> · {ch['etage']}<br>
-        Rent: <strong>{ch['prix']} €</strong> &nbsp;·&nbsp;
-        Utilities: <strong>{ch['charges']} €</strong> &nbsp;·&nbsp;
-        Total / month: <strong>{ch['prix'] + ch['charges']} €</strong> &nbsp;·&nbsp;
-        Security deposit: <strong>{ch['gar_red']} €</strong>
+        <strong>{ch['nom']}</strong> &middot; {ch['etage']}<br>
+        Rent: <strong>{ch['prix']} &euro;</strong> &nbsp;&middot;&nbsp;
+        Utilities: <strong>{ch['charges']} &euro;</strong> &nbsp;&middot;&nbsp;
+        Total / month: <strong>{ch['prix'] + ch['charges']} &euro;</strong> &nbsp;&middot;&nbsp;
+        Security deposit: <strong>{ch['gar_red']} &euro;</strong>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown('<span class="form-step-label">③ Special clause (optional)</span>', unsafe_allow_html=True)
+    st.markdown('<span class="form-step-label">Special clause (optional)</span>', unsafe_allow_html=True)
     special_clause = st.text_area(
         "Any specific condition agreed with the owner",
         placeholder="E.g. garage access included, pet allowed...",
-        height=85
+        height=85,
+        label_visibility="collapsed"
     )
 
-    st.markdown("<div style='height:0.5rem'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:0.3rem'></div>", unsafe_allow_html=True)
     submit = st.form_submit_button("Generate my rental contract")
 
 if submit:
@@ -568,23 +535,20 @@ if submit:
         with st.spinner("Generating your secure contract..."):
             pdf_name = convert_to_pdf(docx_name)
 
-        st.success(f"✓ Contract ready for {gender} {fname} {lname.upper()} — {ch['nom']}")
-
+        st.success(f"Contract ready for {gender} {fname} {lname.upper()} — {ch['nom']}")
         dl1, dl2 = st.columns(2)
         with dl1:
             with open(pdf_name, "rb") as f:
-                st.download_button("⬇ Download PDF", f,
-                                   file_name=pdf_name, mime="application/pdf")
+                st.download_button("Download PDF", f, file_name=pdf_name, mime="application/pdf")
         with dl2:
             with open(docx_name, "rb") as f:
-                st.download_button("⬇ Download Word", f,
-                                   file_name=docx_name,
+                st.download_button("Download Word", f, file_name=docx_name,
                                    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
 
 # ── FOOTER ──
 st.markdown("""
 <div class="site-footer">
-    <strong>46, Rue de l'Orient</strong> · Etterbeek, 1040 Brussels · Belgium<br>
-    Owner-managed accommodation · Contracts generated securely · © 2025
+    <strong>46, Rue de l'Orient</strong> &middot; Etterbeek, 1040 Brussels &middot; Belgium<br>
+    Owner-managed accommodation &middot; Contracts generated securely &middot; 2025
 </div>
 """, unsafe_allow_html=True)
